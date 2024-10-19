@@ -1,0 +1,121 @@
+﻿@model IEnumerable<AspClaysysPrjct.Models.SignUp>
+
+@{ 
+    Layout = "~/Views/Shared/ViewPage2.cshtml"; 
+ }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View User</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('@Url.Content("~/img/q3.jpeg")');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .form-container {
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header, .contact-item {
+            display: flex;
+            flex-direction: row;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header {
+            font-weight: bold;
+            border-bottom: 2px solid #000;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .column {
+            flex: 1;
+            padding: 0 10px;
+        }
+
+        .btn-danger {
+            padding: 10px;
+            background-color: #ff0000;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-danger:hover {
+            background-color: #931212;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="form-container">
+            <center><h1>Registered users</h1></center>
+                <div class="header">
+                    <div class="column">Full name</div>
+                    <div class="column">Date of birth</div>
+                    <div class="column">Gender</div>
+                    <div class="column">Email id</div>
+                    <div class="column">Phone number</div>
+                    <div class="column">Address</div>
+                    <div class="column">State</div>
+                    <div class="column">City</div>
+                    <div class="column">Username</div>
+                    <div class="column">Password</div>
+                    <div class="column">Actions</div>
+                </div>
+
+                @foreach (var item in Model)
+                {
+        <div class="contact-item">
+            <div class="column">@Html.DisplayFor(modelItem => item.fullName)</div>
+            <div class="column">@Html.DisplayFor(modelItem => item.dateOfBirth)</div>
+            <div class="column">@Html.DisplayFor(modelItem => item.gender)</div>
+            <div class="column">@Html.DisplayFor(modelItem => item.email)</div>
+            <div class="column">@Html.DisplayFor(modelItem => item.phoneNumber)</div>
+            <div class="column">@Html.DisplayFor(modelItem => item.address)</div>
+            <div class="column">@Html.DisplayFor(modelItem => item.state)</div>
+            <div class="column">@Html.DisplayFor(modelItem => item.city)</div>
+            <div class="column">@Html.DisplayFor(modelItem => item.userName)</div>
+            <div class="column">@Html.DisplayFor(modelItem => item.password)</div>
+            <div class="column">
+                @Html.ActionLink("Delete", "DeleteUser", new { id = item.id }, new { @class = "btn btn-danger" })
+            </div>
+        </div>}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+﻿@model AspClaysysPrjct.Models.FoodItem
+
+@{
+
+    Layout = "~/Views/Shared/ViewPage2.cshtml";
+}
+
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('@Url.Content("~/img/om1.jpeg")');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+
+    .flex-container {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    //height: 1800px;
+    max-width: 500px;
+    margin: 50px auto;
+    // margin-left: 30px;
+    }
+
+    .form-container {
+    flex: 1;
+    padding: 20px;
+    margin-right: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+
+
+    .form-group {
+    margin-bottom: 20px;
+    }
+
+    .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    }
+
+    .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    }
+
+    textarea.form-control {
+    resize: none;
+    }
+
+    .btn-success {
+        width: 100%;
+        padding: 10px;
+        background-color: #05c70f;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .btn-success:hover {
+        background-color: #107c1c;
+    }
+
+
+</style>
+<div class="flex-container">
+    <div class="form-container">
+
+        <center><h1>Add food items</h1></center>
+
+        @using (Html.BeginForm("Create", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.foodName, "Food name")
+                @Html.TextBoxFor(m => m.foodName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.foodName)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.description, "Description")
+                @Html.TextAreaFor(m => m.description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.description)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.price, "Price")
+                @Html.TextBoxFor(m => m.price, new { @class = "form-control", type = "number", step = "0.01" })
+                @Html.ValidationMessageFor(m => m.price)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.quantity, "Available quantity")
+                @Html.TextBoxFor(m => m.quantity, new { @class = "form-control", type = "number" })
+                @Html.ValidationMessageFor(m => m.quantity)
+            </div>
+
+            <div class="form-group">
+                <label for="UploadFile">Upload image</label>
+                <input type="file" name="UploadFile" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Foods</button>
+        }
+
+    </div>
+</div>

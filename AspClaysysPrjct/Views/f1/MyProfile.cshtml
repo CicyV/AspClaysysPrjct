@@ -1,0 +1,65 @@
+﻿@model AspClaysysPrjct.Models.SignUp
+
+@{
+    //ViewBag.Title = "My Profile";
+    Layout = "~/Views/Shared/ViewPage3.cshtml";
+}
+
+<h2>My Profile</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Message
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="profile-container">
+        <table class="table table-bordered">
+            <tr>
+                <th>Full Name</th>
+                <td>@Model.fullName</td>
+            </tr>
+            <tr>
+                <th>Date of Birth</th>
+                <td>@Model.dateOfBirth</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>@Model.gender</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@Model.email</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td>@Model.phoneNumber</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>@Model.address</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>@Model.state</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>@Model.city</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>@Model.userName</td>
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        No profile information found.
+    </div>
+}

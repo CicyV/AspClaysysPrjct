@@ -1,0 +1,100 @@
+﻿@model IEnumerable<AspClaysysPrjct.Models.Contact>
+@{ 
+    Layout = "~/Views/Shared/ViewPage2.cshtml"; 
+ }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Contact</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('@Url.Content("~/img/f2.jpeg")');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .form-container {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-item div {
+            margin-bottom: 10px;
+        }
+
+        .contact-item div span {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            width: 57%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="form-container">
+
+            <center><h1>Feedback messages</h1></center>
+          
+            @foreach (var item in Model)
+            {
+                <div class="contact-item">
+                    <div><span>Full Name:</span> @Html.DisplayFor(modelItem => item.fullName)</div>
+                    <div><span>Email ID:</span> @Html.DisplayFor(modelItem => item.email)</div>
+                    <div><span>Phone Number:</span> @Html.DisplayFor(modelItem => item.phoneNumber)</div>
+                    <div><span>Feedback Message:</span> @Html.DisplayFor(modelItem => item.message)</div>
+                </div>}
+        </div>
+    </div>
+</body>
+</html>

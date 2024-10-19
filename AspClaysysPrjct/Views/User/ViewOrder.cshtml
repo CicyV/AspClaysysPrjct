@@ -1,0 +1,87 @@
+﻿@model IEnumerable<AspClaysysPrjct.Models.OrderModel>
+
+@{ // Layout = null;
+    Layout = "~/Views/Shared/ViewPage2.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>View User</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('@Url.Content("~/img/q6.jpeg")');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .order-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-item h3 {
+            margin: 0 0 10px;
+        }
+
+        .order-item p {
+            margin: 5px 0;
+        }
+
+        .btn-danger {
+            padding: 10px;
+            background-color: #ff0000;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-danger:hover {
+            background-color: #931212;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        @foreach (var item in Model)
+        {
+            <section class="order-item">
+                <h3>Order ID: @item.OrderId</h3>
+                <p>Food ID: @item.FoodId</p>
+                <p>Quantity: @item.Qty</p>
+                <p>User Address: @item.UserAddress</p>
+                <p>Payment Mode: @item.PaymentMode</p><br />
+                <p>
+                    <a href="@Url.Action("DeleteOrder", new { id = item.OrderId })" class="btn btn-danger">Delete</a>
+                </p>
+            </section>
+        }
+    </div>
+</body>
+</html>

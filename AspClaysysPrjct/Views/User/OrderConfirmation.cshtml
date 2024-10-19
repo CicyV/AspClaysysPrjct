@@ -1,0 +1,125 @@
+﻿
+@{
+    //ViewBag.Title = "Order Confirmation";
+    Layout = "~/Views/Shared/ViewPage3.cshtml";
+}
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('@Url.Content("~/img/b1.jpeg")');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        width: 30%;
+        height:50%;
+        max-width: 1200px;
+        margin: 50px auto;
+    }
+
+    .form-container {
+        flex: 1;
+        padding: 80px;
+        margin-right: 50px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .radio-inline label {
+        display: inline-block; /* Arrange radio buttons in a line */
+        margin-right: 20px; /* Add some space between the labels */
+    }
+
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    textarea.form-control {
+        resize: none;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+
+</style>
+<div class="flex-container">
+    <div class="form-container">
+        <h1>Order</h1>
+        @using (Html.BeginForm())
+        {
+
+            @*@using (Html.BeginForm())
+                {*@
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4></h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h2>@ViewBag.Message</h2>
+        <p>Total Price: @ViewBag.TotalPrice</p>
+        <div>
+            @Html.ActionLink("Back to FoodItem", "ViewFoodItem")
+        </div>
+
+
+    </div>
+        }
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+

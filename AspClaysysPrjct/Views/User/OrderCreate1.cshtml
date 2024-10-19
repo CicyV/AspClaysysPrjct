@@ -1,0 +1,28 @@
+﻿@model AspClaysysPrjct.Models.OrderModel
+
+<div class="box">
+    <h3>Place Your Order</h3>
+    @using (Html.BeginForm("OrderCreate1", "Order", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.FoodId, new { @Value = ViewBag.FoodId })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity, "Quantity")
+            @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control", type = "number", min = "1", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserAddress, "User Address")
+            @Html.TextBoxFor(model => model.UserAddress, new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentMode, "Payment Mode")
+            @Html.DropDownListFor(model => model.PaymentMode, new SelectList(new[] { "Cash", "Card", "Google Pay" }), "Select Payment Mode", new { @class = "form-control", required = "required" })
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Place Order" />
+        </div>
+    }
+</div>

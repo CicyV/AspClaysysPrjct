@@ -1,0 +1,392 @@
+﻿@model AspClaysysPrjct.Models.SignUp
+@*@model IEnumerable<Claysys.Models.SignUp>*@
+
+@{
+    Layout = "~/Views/Shared/ViewPage1.cshtml";
+}
+
+@*<h2>Sign up</h2>*@
+
+@*@if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-info">
+            <strong>Information!</strong>@TempData["ErrorMessage"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span>&times;</span>
+            </button>
+        </div>
+    }*@
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="Script.js" defer></script>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('@Url.Content("~/img/b1.jpeg")');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        width: 30%;
+        height:50%;
+        max-width: 1200px;
+        margin: 50px auto;
+    }
+
+    .form-container {
+        flex: 1;
+        padding: 80px;
+        margin-right: 50px;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .radio-inline label {
+        display: inline-block; /* Arrange radio buttons in a line */
+        margin-right: 20px; /* Add some space between the labels */
+    }
+
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    textarea.form-control {
+        resize: none;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+
+</style>
+
+<div class="flex-container">
+    <div class="form-container">
+        <center><h1>Sign up</h1></center>
+        @*@if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-info">
+                <strong>Information!</strong>@TempData["ErrorMessage"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+        }*@
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-info" style="color: red;">
+                <strong>Information!</strong>@TempData["ErrorMessage"]
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+        }
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.fullName, "Full name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fullName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fullName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.dateOfBirth, "Date of birth", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.dateOfBirth, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                        @Html.ValidationMessageFor(model => model.dateOfBirth, "", new { @class = "text-danger" })
+
+
+                        @*<input type="date" id="dateOfBirth" name="date" onchange="validateDOB()">
+                        <p id="message" style="color: red;"></p>*@
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.gender, "Gender", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="radio">
+                            <label>
+                                @Html.RadioButtonFor(model => model.gender, "Male", new { @id = "Male" }) Male
+                            </label>
+                            <label>
+                                @Html.RadioButtonFor(model => model.gender, "Female", new { @id = "Female" }) Female
+                            </label>
+                            <label>
+                                @Html.RadioButtonFor(model => model.gender, "Other", new { @id = "Other" }) Other
+                            </label>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.email, "Email id", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.phoneNumber, "Phone number", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.address, "Address", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.state, "State", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.state, (SelectList)ViewBag.StateList, "-- Select State --", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                       @Html.LabelFor(model => model.city, "City", htmlAttributes: new { @class = "control-label col-md-2" })
+                       <div class="col-md-10">
+                           @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                           @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                       </div>
+                </div>*@
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.city, "City", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.city, (SelectList)ViewBag.CityList, "-- Select City --", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.userName, "Username", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.password, "Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CPassword, "Confirm password", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(model => model.CPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Register" class="btn btn-primary" />
+                    </div>
+                </div>
+                @Html.ActionLink("If you are a registered user,Sign in here..", "Index", "Login")
+            </div>
+        }
+    </div>
+</div>
+@*<div>
+        @Html.ActionLink("Back to List", "Index1")
+    </div>*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(document).ready(function () {
+                    // Set the max attribute dynamically to today's date
+                    var today = new Date().toISOString().split('T')[0];
+                    $('#dateOfBirth').attr('max', today);
+
+
+                    // Custom validation method to allow only letters in the full name
+                    $.validator.addMethod("lettersOnly", function (value, element) {
+                        return this.optional(element) || /^[a-zA-Z\s]+$/.test(value);
+                    }, "Full name can contain only letters and spaces.");
+
+                    // Custom method to check if the entered date is in the past
+                    $.validator.addMethod("noFutureDate", function (value, element) {
+                        var selectedDate = new Date(value);
+                        var currentDate = new Date();
+                        return this.optional(element) || selectedDate <= currentDate;
+                    }, "Date of birth cannot be in the future");
+
+                    $("form").validate({
+                        rules: {
+                            fullName: {
+                                required: true,
+                                minlength: 2,
+                                lettersOnly: true // Apply the custom validation rule here
+                            },
+                            dateOfBirth: {
+                                required: true,
+                                date: true,
+                                noFutureDate: true // Add the custom validation rule here
+                            },
+                            gender: {
+                                required: true
+                            },
+                            email: {
+                                required: true,
+                                email: true
+                            },
+                            phoneNumber: {
+                                required: true,
+                                minlength: 10,
+                                digits: true
+                            },
+                            address: {
+                                required: true
+                            },
+                            state: {
+                                required: true
+                            },
+                            city: {
+                                required: true
+                            },
+                            userName: {
+                                required: true,
+                                minlength: 4
+                            },
+                            password: {
+                                required: true,
+                                minlength: 6
+                            },
+                            CPassword: {
+                                required: true,
+                                equalTo: "#password"
+                            }
+                        },
+                        messages: {
+                            fullName: {
+                                required: "Please enter your full name",
+                                minlength: "Full name must be at least 2 characters long"
+                            },
+                            dateOfBirth: {
+                                required: "Please enter your date of birth",
+                                noFutureDate: "Date of birth cannot be in the future" // Error message for future date
+                            },
+                            gender: {
+                                required: "Please select your gender"
+                            },
+                            email: {
+                                required: "Please enter your email",
+                                email: "Please enter a valid email"
+                            },
+                            phoneNumber: {
+                                required: "Please enter your phone number",
+                                minlength: "Phone number must be at least 10 digits",
+                                digits: "Only numbers are allowed"
+                            },
+                            address: {
+                                required: "Please enter your address"
+                            },
+                            state: {
+                                required: "Please select your state"
+                            },
+                            city: {
+                                required: "Please enter your city"
+                            },
+                            userName: {
+                                required: "Please enter your username",
+                                minlength: "Username must be at least 4 characters long"
+                            },
+                            password: {
+                                required: "Please provide a password",
+                                minlength: "Password must be at least 6 characters long"
+                            },
+                            CPassword: {
+                                required: "Please confirm your password",
+                                equalTo: "Passwords do not match"
+                            }
+                        },
+                        errorElement: "span",
+                        errorClass: "text-danger",
+                        highlight: function (element) {
+                            $(element).closest('.form-group').addClass('has-error');
+                        },
+                        unhighlight: function (element) {
+                            $(element).closest('.form-group').removeClass('has-error');
+                        }
+                    });
+                });
+
+            });
+        </script>
+    }
+
+
